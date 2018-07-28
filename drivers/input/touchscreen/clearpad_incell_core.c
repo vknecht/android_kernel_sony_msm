@@ -4988,6 +4988,8 @@ succeeded:
 	}
 	HWLOGI(this, "%s : %s\n", NAME_OF(clearpad_calibration_name, mode),
 		     status & need_bit ? "Failed" : "Succeed");
+
+	clearpad_set_delay(20);
 end:
 	switch (mode) {
 	case SYN_CALIBRATION_EW:
@@ -8459,6 +8461,8 @@ static int clearpad_probe(struct platform_device *pdev)
 		cdata->rmi_dev = rmi_dev;
 	}
 #endif
+
+	device_init_wakeup(&this->pdev->dev, 1);
 
 #ifdef CONFIG_DEBUG_FS
 	/* debugfs */
